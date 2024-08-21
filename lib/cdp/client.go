@@ -145,7 +145,9 @@ func (cdp *Client) consumeMessages() {
 			ID int `json:"id"`
 		}
 		err = json.Unmarshal(data, &id)
-		utils.E(err)
+		if err!=nil {
+			continue
+		}
 
 		if id.ID == 0 {
 			var evt Event
